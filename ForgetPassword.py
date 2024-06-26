@@ -11,8 +11,6 @@ from Setting import win, x, APPFRAME, file, CHARTS, BALSHEETFILES, PLFILES
 from LogIn import LOGIN
 from Database_Chain import mysql as db
 import Garage
-# Database connection
-
 
 # Email settings
 EMAIL_ADDRESS = "your_email@gmail.com"
@@ -47,11 +45,11 @@ def show_email_dialog():
     email_window = Toplevel(win)
     email_window.title("Forgot Password")
     email_window.geometry("400x250")
-    email_window.configure(bg='#EAF6F6')
+    email_window.configure(bg='#F0F4F8')
 
     Label(email_window, text="Enter your email address:", font=(
-        'Sans-serif', 14), bg='#EAF6F6', fg='#2B2D42').pack(pady=20)
-    email_entry = Entry(email_window, width=30, font='Sans-serif')
+        'Roboto', 14), bg='#F0F4F8', fg='#2B2D42').pack(pady=20)
+    email_entry = Entry(email_window, width=30, font='Roboto')
     email_entry.pack(pady=10)
 
     def send_email():
@@ -74,36 +72,46 @@ def show_email_dialog():
             messagebox.showerror("Error", "Email not found.")
 
     Button(email_window, text="Send", command=send_email,
-           font='Sans-serif 12', bg='#FF6F61', fg='white').pack(pady=20)
+           font='Roboto 12', bg='#5DADE2', fg='white', relief=FLAT, bd=0).pack(pady=20)
 
 
 def show_password_reset_dialog():
     """Show the password reset dialog."""
     reset_window = Toplevel(win)
     reset_window.title("Reset Password")
-    reset_window.geometry("400x350")
-    reset_window.configure(bg='#EAF6F6')
+    reset_window.geometry("400x450")
+    reset_window.configure(bg='#F0F4F8')
 
     Label(reset_window, text="Enter your email address:", font=(
-        'Sans-serif', 14), bg='#EAF6F6', fg='#2B2D42').pack(pady=10)
-    email_entry = Entry(reset_window, width=30, font='Sans-serif')
+        'Roboto', 14), bg='#F0F4F8', fg='#2B2D42').pack(pady=10)
+    email_entry = Entry(reset_window, width=30, font='Roboto')
     email_entry.pack(pady=10)
 
     Label(reset_window, text="Enter the temporary password:", font=(
-        'Sans-serif', 14), bg='#EAF6F6', fg='#2B2D42').pack(pady=10)
+        'Roboto', 14), bg='#F0F4F8', fg='#2B2D42').pack(pady=10)
     temp_pass_entry = Entry(reset_window, width=30,
-                            font='Sans-serif', show='*')
+                            font='Roboto', show='*')
     temp_pass_entry.pack(pady=10)
 
     Label(reset_window, text="Enter your new password:", font=(
-        'Sans-serif', 14), bg='#EAF6F6', fg='#2B2D42').pack(pady=10)
-    new_pass_entry = Entry(reset_window, width=30, font='Sans-serif', show='*')
+        'Roboto', 14), bg='#F0F4F8', fg='#2B2D42').pack(pady=10)
+    new_pass_entry = Entry(reset_window, width=30, font='Roboto', show='*')
     new_pass_entry.pack(pady=10)
+
+    Label(reset_window, text="Confirm your new password:", font=(
+        'Roboto', 14), bg='#F0F4F8', fg='#2B2D42').pack(pady=10)
+    confirm_pass_entry = Entry(reset_window, width=30, font='Roboto', show='*')
+    confirm_pass_entry.pack(pady=10)
 
     def reset_password():
         email = email_entry.get()
         temp_password = temp_pass_entry.get()
         new_password = new_pass_entry.get()
+        confirm_password = confirm_pass_entry.get()
+
+        if new_password != confirm_password:
+            messagebox.showerror("Error", "Passwords do not match.")
+            return
 
         cursor = db.cursor()
         cursor.execute(
@@ -120,36 +128,36 @@ def show_password_reset_dialog():
             messagebox.showerror("Error", "Invalid temporary password.")
 
     Button(reset_window, text="Reset", command=reset_password,
-           font='Sans-serif 12', bg='#FF6F61', fg='white').pack(pady=20)
+           font='Roboto 12', bg='#5DADE2', fg='white', relief=FLAT, bd=0).pack(pady=20)
 
 
 def FORGETPASSWORD():
     CLEAN()
     win.title('Change Password')
 
-    bg_color = '#EAF6F6'
+    bg_color = '#F0F4F8'
     fg_color = '#2B2D42'
-    accent_color = '#FF6F61'
+    accent_color = '#5DADE2'
 
     label = Label(APPFRAME, text='📝 Change Password', font=(
-        'Sans-serif', 29), foreground=fg_color, background=bg_color)
+        'Roboto', 29, 'bold'), foreground=fg_color, background=bg_color)
     label.place(relx=0.5, y=60, anchor=CENTER)
 
     send_email_button = Button(APPFRAME, text="Send Temporary Password", command=show_email_dialog,
-                               font='Sans-serif 12', bg=accent_color, fg='white', width=25)
+                               font='Roboto 12', bg=accent_color, fg='white', relief=FLAT, bd=0, padx=10, pady=5)
     send_email_button.place(relx=0.5, y=200, anchor=CENTER)
 
     reset_password_button = Button(APPFRAME, text="Reset Password", command=show_password_reset_dialog,
-                                   font='Sans-serif 12', bg=accent_color, fg='white', width=25)
+                                   font='Roboto 12', bg=accent_color, fg='white', relief=FLAT, bd=0, padx=10, pady=5)
     reset_password_button.place(relx=0.5, y=300, anchor=CENTER)
 
     MainMenu = Button(APPFRAME, text="Main", command=Garage.GARAGE, foreground='white',
-                      background=accent_color, font='Sans-serif 10 bold', width=6)
+                      background=accent_color, font='Roboto 10 bold', relief=FLAT, bd=0, padx=5, pady=2)
     MainMenu.place(x=10, y=10)
 
     # Copyright notice
     copyright_label = Label(APPFRAME, text="© Ashmeet Singh", font=(
-        "Helvetica", 10, "italic"), bg=bg_color, fg=fg_color)
+        "Roboto", 10, "italic"), bg=bg_color, fg=fg_color)
     copyright_label.place(relx=0.5, rely=0.95, anchor=CENTER)
 
 

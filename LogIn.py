@@ -70,40 +70,43 @@ def LOGIN():
     win.title('LOGIN')
 
     # Define the theme colors and fonts
-    bg_color = '#E8F8F5'  # Light teal background
-    fg_color = '#0E6251'  # Dark teal for text
-    accent_color = '#FF5733'  # Vibrant accent color
-    button_bg_color = '#0E6251'  # Dark teal for buttons
+    bg_color = '#F5F5F5'  # Light gray background
+    fg_color = '#333333'  # Dark gray for text
+    accent_color = '#FF6F61'  # Coral accent color
+    button_bg_color = '#4CAF50'  # Green for buttons
     button_fg_color = '#FFFFFF'  # White text on buttons
     entry_bg_color = '#FFFFFF'  # White background for entry fields
-    entry_fg_color = '#0E6251'  # Dark teal text in entry fields
+    entry_fg_color = '#333333'  # Dark gray text in entry fields
+
+    # Set background color of APPFRAME
+    APPFRAME.configure(bg=bg_color)
 
     # Title label
     title_label = Label(APPFRAME, text="👤 LOGIN", font=(
-        "Helvetica", 28, "bold"), bg=bg_color, fg=fg_color)
+        "Helvetica", 32, "bold"), bg=bg_color, fg=fg_color)
     title_label.place(relx=0.5, y=100, anchor=tk.CENTER)
 
     # Username label and entry
     username_label = Label(APPFRAME, text="Username", font=(
-        "Helvetica", 18), bg=bg_color, fg=accent_color)
+        "Helvetica", 18, "bold"), bg=bg_color, fg=accent_color)
     username_label.place(relx=0.5, y=200, anchor=tk.CENTER)
     global UN
-    UN = Entry(APPFRAME, font=("Helvetica", 14), bg=entry_bg_color,
+    UN = Entry(APPFRAME, font=("Helvetica", 16), bg=entry_bg_color,
                fg=entry_fg_color, relief=GROOVE, bd=2)
     UN.place(relx=0.5, y=240, anchor=tk.CENTER, width=300)
 
     # Password label and entry
     password_label = Label(APPFRAME, text="Password", font=(
-        "Helvetica", 18), bg=bg_color, fg=accent_color)
+        "Helvetica", 18, "bold"), bg=bg_color, fg=accent_color)
     password_label.place(relx=0.5, y=300, anchor=tk.CENTER)
     global PD
-    PD = Entry(APPFRAME, font=("Helvetica", 14), show='*',
+    PD = Entry(APPFRAME, font=("Helvetica", 16), show='*',
                bg=entry_bg_color, fg=entry_fg_color, relief=GROOVE, bd=2)
     PD.place(relx=0.5, y=340, anchor=tk.CENTER, width=300)
 
     # Login button
     login_button = Button(APPFRAME, text="Login", command=validate_login, fg=button_fg_color,
-                          bg=button_bg_color, font=("Helvetica", 14, "bold"), relief=RAISED, bd=3)
+                          bg=button_bg_color, font=("Helvetica", 16, "bold"), relief=RAISED, bd=3)
     login_button.place(relx=0.5, y=400, anchor=tk.CENTER, width=200)
 
     # Main menu button (assuming MAIN function is defined)

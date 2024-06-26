@@ -2,41 +2,43 @@ from tkinter import ttk
 from Setting import win, APPFRAME
 
 
-def apply_theme():
-    # Define your color palette
-    bg_color = '#121212'  # Dark background
-    fg_color = '#FFFFFF'  # White text
-    btn_bg_color = '#009688'  # Teal
-    btn_hover_color = '#00796B'  # Darker teal
-    btn_active_color = '#004D40'  # Darkest teal
+def apply_theme(theme):
+    if theme == "dark":
+        bg_color = '#121212'
+        fg_color = '#FFFFFF'
+        btn_bg_color = '#009688'
+        btn_hover_color = '#00796B'
+        btn_active_color = '#004D40'
+    else:
+        bg_color = '#F0F4F8'
+        fg_color = '#2B2D42'
+        btn_bg_color = '#007BFF'
+        btn_hover_color = '#0056B3'
+        btn_active_color = '#003580'
 
-    # Set styles for different widgets
     win.configure(bg=bg_color)
     APPFRAME.config(bg=bg_color)
 
-    ttk.Style().theme_use('clam')
+    style = ttk.Style()
+    style.theme_use('clam')
 
-    # Button style
-    ttk.Style().configure('TButton',
-                          background=btn_bg_color,
-                          foreground='white',
-                          font=('Arial', 14, 'bold'),
-                          padding=10,
-                          relief='flat')  # Note: Use 'flat' instead of ttk.FLAT
-    ttk.Style().map('TButton',
-                    background=[('active', btn_active_color), ('hover', btn_hover_color)])
+    style.configure('TButton',
+                    background=btn_bg_color,
+                    foreground='white',
+                    font=('Arial', 14, 'bold'),
+                    padding=10,
+                    relief='flat')
+    style.map('TButton',
+              background=[('active', btn_active_color), ('hover', btn_hover_color)])
 
-    # Entry style
-    ttk.Style().configure('TEntry',
-                          fieldbackground=bg_color,  # Background color
-                          foreground=fg_color,  # Text color
-                          font=('Arial', 12),
-                          padding=5,
-                          borderwidth=2,
-                          relief='flat')
-
-    # If you have other widgets like Labels, Frames, etc., configure their styles here as well
+    style.configure('TEntry',
+                    fieldbackground=bg_color,
+                    foreground=fg_color,
+                    font=('Arial', 12),
+                    padding=5,
+                    borderwidth=2,
+                    relief='flat')
 
 
-# Apply the theme immediately upon import
-apply_theme()
+# Apply the dark theme by default upon import
+apply_theme("dark")
