@@ -1,16 +1,12 @@
-from tkinter import ttk, messagebox
+from tkinter import ttk, messagebox, Button, Label
 from tkinter import *
 import tkinter as tk
-import pandas as pd
-import numpy as np
-import os
 from Clean import CLEAN
-from Database_Chain import mysql as db
 from Setting import win, APPFRAME
-from UploadFiles import import_files
 from BalanceSheet import Balancesheet
 from Main import PROFILE
 import PandL
+from UploadFiles import import_files
 
 
 def GARAGE():
@@ -18,10 +14,10 @@ def GARAGE():
     win.title('Garage')
 
     # Define colors
-    bg_color = '#f5f5f5'       # Light grey background
-    fg_color = '#333333'       # Dark grey foreground
+    bg_color = '#1e1e1e'         # Dark background
+    fg_color = '#ffffff'         # White text
     button_bg_color = '#ffcc00'  # Yellow button background
-    button_fg_color = '#333333'  # Dark grey button foreground
+    button_fg_color = '#1e1e1e'  # Dark button foreground
     highlight_color = '#e74c3c'  # Red highlight color
 
     # Update frame periodically
@@ -30,43 +26,37 @@ def GARAGE():
 
     update()
 
-    # Title label
-    label = Label(APPFRAME, text="🛠 Garage", font=(
-        "Sans-serif 29 bold"), background=bg_color, foreground=fg_color)
-    label.pack(pady=20)
+    # Top bar for icons
+    top_bar = Frame(APPFRAME, bg=bg_color)
+    top_bar.pack(side=TOP, fill=X, padx=0, pady=0)
 
-    # Buttons
-    buttons = [
-        ("📓 Balance Sheet", Balancesheet, 150),
-        ("💸 Profit/Loss", PandL.PROFIT_LOSS, 200),
-        ("📐 Analysis", win.destroy, 250),
-        ("💰 Cash Flow", win.destroy, 300),
+    # Search icon button
+    search_button = Button(top_bar, text="🔍", command=None, fg=button_fg_color, bg=button_bg_color,
+                           font='Sans-serif 16 bold', width=2, height=1, relief=RAISED, bd=0)
+    search_button.pack(side=LEFT, padx=0, pady=0)
+
+    # File icon button
+    file_button = Button(top_bar, text="📂", command=import_files, fg=button_fg_color, bg=button_bg_color,
+                         font='Sans-serif 16 bold', width=2, height=1, relief=RAISED, bd=0)
+    file_button.pack(side=LEFT, padx=0, pady=0)
+
+    # Menu bar for menus
+    menu_bar = Frame(APPFRAME, bg=bg_color)
+    menu_bar.pack(side=TOP, fill=X, padx=0, pady=0)
+
+    # Menu buttons
+    menu_buttons = [
+        ("📓 Balance Sheet", Balancesheet),
+        ("💸 Profit/Loss", PandL.PROFIT_LOSS),
+        ("📐 Analysis", win.destroy),
+        ("💰 Cash Flow", win.destroy),
+        ("↩ LOG OUT", PROFILE)
     ]
 
-    for (text, command, y_pos) in buttons:
-        button = Button(APPFRAME, text=text, width=30, command=command, foreground=button_fg_color,
-                        background=button_bg_color, font='Sans-serif 13', relief=RAISED)
-        button.pack(pady=10)
-        button.place(relx=0.5, y=y_pos, anchor=CENTER)
-
-    # Additional buttons with icons
-    icon_buttons = [
-        ("🔍", None, 600, 50),  # Placeholder for functionality
-        ("📂", import_files, 600, 1190),
-    ]
-
-    for (text, command, y_pos, x_pos) in icon_buttons:
-        button = Button(APPFRAME, text=text, command=command, foreground=button_fg_color, background=button_bg_color,
-                        font='Sans-serif 20 bold', width=4, height=2, relief=RAISED)
-        button.pack(pady=10)
-        # Anchored to bottom-right corner
-        button.place(x=x_pos, y=y_pos, anchor=SE)
-
-    # Logout button
-    logout = Button(APPFRAME, text="↩ LOG OUT", command=PROFILE, foreground=button_fg_color, background=highlight_color,
-                    font='Sans-serif 10 bold', width=10, relief=RAISED, borderwidth=2)
-    logout.pack(pady=20)
-    logout.place(x=1180, y=10)
+    for text, command in menu_buttons:
+        menu_button = Button(menu_bar, text=text, command=command, fg=button_fg_color,
+                             bg=highlight_color, font='Sans-serif 12 bold', width=20, height=2, relief=RAISED, bd=0)
+        menu_button.pack(side=LEFT, padx=0, pady=0)
 
 
 # Main loop
