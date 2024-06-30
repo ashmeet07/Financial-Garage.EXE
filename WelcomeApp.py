@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
 from Clean import CLEAN
-from Setting import win, APPFRAME
+from Setting import win, APPFRAME 
 from Main import PROFILE
 from theme import apply_theme
 
