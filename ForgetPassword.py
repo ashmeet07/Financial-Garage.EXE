@@ -4,7 +4,7 @@ import tkinter as tk
 import smtplib
 from email.mime.text import MIMEText
 import random
-import string
+import string 
 import mysql.connector
 from Clean import CLEAN
 from Setting import win, x, APPFRAME, file, CHARTS, BALSHEETFILES, PLFILES
