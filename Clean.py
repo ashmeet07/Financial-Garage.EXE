@@ -8,6 +8,6 @@ from Setting import APPFRAME
 def CLEAN():
     global APPFRAME
     for widget in APPFRAME.winfo_children():
-        widget.destroy()
+        widget.destroy() 
 
 
