@@ -13,7 +13,7 @@ from UploadFiles import import_files
 def Balancesheet():
     CLEAN()
 
-    balance_sheets_dir = "C:\\Users\\ashme\\OneDrive\\Documents\\Financial Garage\\BalanceSheets"
+    balance_sheets_dir = "C:\\Users\\OneDrive\\Documents\\Financial Garage\\BalanceSheets"
     balance_sheet_files = os.listdir(balance_sheets_dir)
 
     BALSHEETFILES.extend(balance_sheet_files)
@@ -68,7 +68,7 @@ def Balancesheet():
 
 def my_fun(selected_file):
     file_path = os.path.join(
-        "C:\\Users\\ashme\\OneDrive\\Documents\\Financial Garage\\BalanceSheets", selected_file)
+        "C:\\Users\\OneDrive\\Documents\\Financial Garage\\BalanceSheets", selected_file)
 
     if os.path.exists(file_path):
         try:
