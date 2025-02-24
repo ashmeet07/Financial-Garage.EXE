@@ -33,11 +33,11 @@ class FileHandler:
             for i, file_path in self.selected_files.items():
                 if file_path is not None:
                     if i == 1:
-                        dst_path = "C:/Users/ashme/OneDrive/Documents/Financial Garage/garage_pkg/BalanceSheets"
+                        dst_path = "C:/Users/OneDrive/Documents/Financial Garage/garage_pkg/BalanceSheets"
                     elif i == 2:
-                        dst_path = "C:/Users/ashme/OneDrive/Documents/Financial Garage/garage_pkd/Profit&Losss"
+                        dst_path = "C:/Users/OneDrive/Documents/Financial Garage/garage_pkd/Profit&Losss"
                     elif i == 3:
-                        dst_path = "C:/Users/ashme/OneDrive/Documents/Financial Garage/garage_pkg/OtherDirectory"
+                        dst_path = "C:/Users/OneDrive/Documents/Financial Garage/garage_pkg/OtherDirectory"
 
                     # Check if the file already exists in the destination directory
                     file_name = os.path.basename(file_path)
